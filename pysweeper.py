@@ -20,7 +20,7 @@ class pysweeper:
         self.cell = [[]] ## IMPORTANT: Cells are retrieved with self.cell[column][row]
         self.cell_size = 30
 
-        self.running
+        self.running = False
         self.time = 0
 
         self.rt = Tk()
@@ -41,7 +41,6 @@ class pysweeper:
 
         self.cellSetup()
         self.window()
-        self.rt.after(1000, self.update_time)
 
     ### INIT FUNCTIONS ###
     def ask(self):
@@ -133,6 +132,7 @@ class pysweeper:
         if not self.running:
             print("Running")
             self.running = True
+            self.rt.after(1000, self.update_time)
 
         ix = (self.rt.winfo_pointerx() - self.rt.winfo_rootx()) // self.cell_size # Column Index
         iy = (self.rt.winfo_pointery() - self.rt.winfo_rooty()) // self.cell_size # Row Index
@@ -148,6 +148,7 @@ class pysweeper:
         if not self.running:
             print("Running")
             self.running = True
+            self.rt.after(1000, self.update_time)
 
         ix = (self.rt.winfo_pointerx() - self.rt.winfo_rootx()) // self.cell_size # Column Index
         iy = (self.rt.winfo_pointery() - self.rt.winfo_rooty()) // self.cell_size # Row Index
@@ -204,7 +205,6 @@ class pysweeper:
     def restart(self):
         self.rt.destroy()
         self.__init__()
-        self.running = False
 
 ### END PYSWEEPER CLASS
 
