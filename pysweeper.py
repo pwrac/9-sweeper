@@ -2,8 +2,6 @@
 # pysweeper by Aidan Clark
 
 ## TODO ##
-# TK: Include display for flags and time
-# TK: Add buttons for reset or new game
 # Add and complete win condition
 # Complete lose condition
 
