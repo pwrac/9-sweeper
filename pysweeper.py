@@ -9,7 +9,6 @@
 
 from random import randint
 from tkinter import *
-import time
 
 class pysweeper:
 
@@ -23,7 +22,7 @@ class pysweeper:
         self.cell = [[]] ## IMPORTANT: Cells are retrieved with self.cell[column][row]
         self.cell_size = 25
 
-        self.running = False
+        self.running
         self.time = 0
 
         self.rt = Tk()
@@ -43,6 +42,7 @@ class pysweeper:
 
         self.cellSetup()
         self.window()
+        self.rt.after(1000, self.update_time)
         self.rt.mainloop()
 
     ### INIT FUNCTIONS ###
@@ -58,11 +58,13 @@ class pysweeper:
             columns = int(input("Width:\n>> "))
             rows = int(input("Height:\n>> "))
             bombs = int(input("Amount of Bombs:\n>> "))
-<<<<<<< HEAD
-=======
+
         self.running = True
->>>>>>> 6a79ecbb83351688da1391bdea8c05846a468463
         return rows, columns, bombs
+
+    def window(self):
+        self.rt.bind("<Button-1>", lambda x : self.handle_left_click())
+        self.rt.bind("<Button-3>", lambda y : self.handle_right_click())
 
     def generate_boards(self, row, col, bombs):
         arr1 = [[0 for _ in range(col)] for _ in range(row)]
@@ -106,6 +108,13 @@ class pysweeper:
         self.flag_lbl.place(anchor=NE, y=self.y+self.cell_size, x=self.x, width=3*self.cell_size, height=self.cell_size)
         self.time_lbl.place(anchor=N, y=self.y+self.cell_size, x=int(self.x/2), width=2*self.cell_size, height=self.cell_size)
 
+    def update_time(self):
+        if self.running:
+            self.time += 1
+            self.time_lbl.config(text=f"{self.time:03}")
+            self.rt.after(1000, self.update_time)
+
+
     ### GAME FUNTIONS ###
     def sweep(self, row, col):
         self.vlayer[row][col] = 0
@@ -124,10 +133,7 @@ class pysweeper:
 
     def handle_left_click(self):
         if not self.running:
-<<<<<<< HEAD
             print("Running")
-=======
->>>>>>> 6a79ecbb83351688da1391bdea8c05846a468463
             self.running = True
 
         ix = (self.rt.winfo_pointerx() - self.rt.winfo_rootx()) // self.cell_size # Column Index
@@ -142,10 +148,7 @@ class pysweeper:
 
     def handle_right_click(self):
         if not self.running:
-<<<<<<< HEAD
             print("Running")
-=======
->>>>>>> 6a79ecbb83351688da1391bdea8c05846a468463
             self.running = True
 
         ix = (self.rt.winfo_pointerx() - self.rt.winfo_rootx()) // self.cell_size # Column Index
@@ -172,13 +175,10 @@ class pysweeper:
         self.vlayer = [[0 for _ in range(self.col)] for _ in range(self.row)]
         self.updateCells()
         self.running = False
-<<<<<<< HEAD
         print("Not running")
-=======
->>>>>>> 6a79ecbb83351688da1391bdea8c05846a468463
 
     def gameWin(self):
-        return ## TODO:
+        return ## TODO
 
     ### TK FUNCTIONS ###
     def updateCells(self):
@@ -191,23 +191,13 @@ class pysweeper:
                     self.cell[c][r].config(relief=SUNKEN, text=str(self.items[r][c]), fg=COLOR[self.items[r][c]], activeforeground=COLOR[self.items[r][c]])
 
     def window(self):
-<<<<<<< HEAD
         self.rt.bind("<Button-1>", lambda x : self.handle_left_click())
         self.rt.bind("<Button-3>", lambda y : self.handle_right_click())
 
     def restart(self):
         self.rt.destroy()
         self.__init__()
-=======
-        self.cellSetup()
-        self.rt.bind("<Button-1>", lambda x : self.handle_left_click())
-        self.rt.bind("<Button-3>", lambda y : self.handle_right_click())
-        self.rt.mainloop()
->>>>>>> 6a79ecbb83351688da1391bdea8c05846a468463
-
-    def restart(self):
-        self.rt.destroy()
-        self.__init__()
+        self.running = False
 
 ### END PYSWEEPER CLASS
 
