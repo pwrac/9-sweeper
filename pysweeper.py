@@ -170,17 +170,15 @@ class pysweeper:
         self.updateCells()
 
     def gameOver(self):
-        print("Game Over")
         self.rt.unbind("<Button-1>")
         self.rt.unbind("<Button-3>")
         self.game_lbl.config(text="You Lose!")
         self.vlayer = [[0 for _ in range(self.col)] for _ in range(self.row)]
         self.updateCells()
         self.running = False
-        print("Not running")
+        print("Stopped running")
 
     def gameWin(self):
-        print("You Win!")
         self.rt.unbind("<Button-1>")
         self.rt.unbind("<Button-3>")
         self.game_lbl.config(text="You Win!")
