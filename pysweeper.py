@@ -18,7 +18,7 @@ class pysweeper:
         # vlayer board determines whether a cell is unswept (2), flagged (1), or revealed (0)
 
         self.cell = [[]] ## IMPORTANT: Cells are retrieved with self.cell[column][row]
-        self.cell_size = 25
+        self.cell_size = 30
 
         self.running
         self.time = 0
@@ -42,7 +42,6 @@ class pysweeper:
         self.cellSetup()
         self.window()
         self.rt.after(1000, self.update_time)
-        self.rt.mainloop()
 
     ### INIT FUNCTIONS ###
     def ask(self):
@@ -96,7 +95,7 @@ class pysweeper:
 
     def cellSetup(self):
         # column/row loop order reversed due to how tkinter places buttons
-        # Refer to important warnint on line 13 on retrieving cells
+        # Refer to important warning on line 13 on retrieving cells
         for r in range(self.col):
             self.cell.append([])
             for c in range(self.row):
@@ -218,6 +217,8 @@ def printb(arr):
 
 def main():
     game = pysweeper()
+    printb(game.items)
+    game.rt.mainloop()
 
 if __name__ == "__main__":
     main()
