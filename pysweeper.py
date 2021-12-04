@@ -33,6 +33,7 @@ class pysweeper:
         self.reset_btn = Button(self.rt, text='Reset', command=lambda : self.restart())
         self.flag_lbl = Label(self.rt, text=f"Flags: {self.flags}")
         self.time_lbl = Label(self.rt, text=f"{self.time:03}")
+        self.game_lbl = Label(self.rt, text="")
 
         self.rt.title('pysweeper')
         self.rt.geometry(f"{self.x}x{self.y+2*self.cell_size}")
@@ -105,13 +106,13 @@ class pysweeper:
         self.reset_btn.place(x=0, y=self.y+self.cell_size, width=2*self.cell_size, height=self.cell_size)
         self.flag_lbl.place(anchor=NE, y=self.y+self.cell_size, x=self.x, width=3*self.cell_size, height=self.cell_size)
         self.time_lbl.place(anchor=N, y=self.y+self.cell_size, x=int(self.x/2), width=2*self.cell_size, height=self.cell_size)
+        self.game_lbl.place(anchor=S, y=self.y+self.cell_size, x=int(self.x/2), width=self.x, height=self.cell_size)
 
     def update_time(self):
         if self.running:
             self.time += 1
             self.time_lbl.config(text=f"{self.time:03}")
             self.rt.after(1000, self.update_time)
-
 
     ### GAME FUNTIONS ###
     def sweep(self, row, col):
@@ -170,13 +171,20 @@ class pysweeper:
 
     def gameOver(self):
         print("Game Over")
+        self.rt.unbind("<Button-1>")
+        self.rt.unbind("<Button-3>")
+        self.game_lbl.config(text="You Lose!")
         self.vlayer = [[0 for _ in range(self.col)] for _ in range(self.row)]
         self.updateCells()
         self.running = False
         print("Not running")
 
     def gameWin(self):
-        return ## TODO
+        print("You Win!")
+        self.rt.unbind("<Button-1>")
+        self.rt.unbind("<Button-3>")
+        self.game_lbl.config(text="You Win!")
+        self.running = False
 
     ### TK FUNCTIONS ###
     def updateCells(self):
@@ -187,6 +195,10 @@ class pysweeper:
                     continue
                 if self.vlayer[r][c] == 0:
                     self.cell[c][r].config(relief=SUNKEN, text=str(self.items[r][c]), fg=COLOR[self.items[r][c]], activeforeground=COLOR[self.items[r][c]])
+
+        hidden = sum((i.count(2) + i.count(1)) for i in self.vlayer)
+        if hidden == self.bombs:
+            self.gameWin()
 
     def window(self):
         self.rt.bind("<Button-1>", lambda x : self.handle_left_click())
