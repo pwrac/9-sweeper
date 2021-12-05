@@ -4,7 +4,6 @@ A remake of Minesweeper with python and tkinter as my final project in CS120: In
 ## Screenshots
 Below are screenshots of the game with different inputs on difficulty
 
----
 ```
 Select a difficulty: [0=Easy, 1=Intermediate, 2=Expert, 3=Custom]:
 >> 0
