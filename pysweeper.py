@@ -37,7 +37,10 @@ class pysweeper:
 
     ### INIT FUNCTIONS ###
     def ask(self): # Ask user for difficulty option. Returns (rows, columns, bombs)
-        diff = int(input("Select a difficulty: [0=Easy, 1=Intermediate, 2=Expert, 3=Custom]\n>> "))
+        diff = input("Select a difficulty: [0=Easy, 1=Intermediate, 2=Expert, 3=Custom]\n>> ")
+        while not diff in ['0','1','2','3']:
+            diff = input("Make sure to input the proper number value for the difficulty\nSelect a difficulty: [0=Easy, 1=Intermediate, 2=Expert, 3=Custom]\n>> ")
+        diff = int(diff)
         if diff == 0:
             rows, columns, bombs = 9, 9, 10
         if diff == 1:
