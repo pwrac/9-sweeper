@@ -18,6 +18,7 @@ class pysweeper:
 
         self.running = False # Determines whether the game is running
         self.time = 0
+        self.after_id = None # Used to cancel "after" function on reset
 
         self.rt = Tk()
         self.x = self.col*self.cell_size # Width of the cells combined
@@ -54,7 +55,6 @@ class pysweeper:
             bombs = int(input("Amount of Bombs:\n>> "))
             while bombs > max_bombs:
                 bombs = int(input(f"Amount of bombs must be less than {max_bombs}\nAmount of Bombs:\n>> "))
-        self.running = True # Window will open and game will start
         return rows, columns, bombs
 
     def bind_mouse(self): # Bind right and left mouse click to handle functions
@@ -108,7 +108,10 @@ class pysweeper:
         if self.running:
             self.time += 1
             self.time_lbl.config(text=f"{self.time:03}")
-            self.rt.after(1000, self.update_time)
+            self.after_id = self.rt.after(1000, self.update_time)
+            return
+        elif not self.running:
+            return
 
     ### GAME FUNTIONS ###
     def sweep(self, row, col): # Reveal cells if 0 or surrounding a 0 unless flagged. Returns True if sweep was not a bomb.
@@ -130,7 +133,7 @@ class pysweeper:
         if not self.running:
             print("Running")
             self.running = True
-            self.rt.after(1000, self.update_time)
+            self.after_id = self.rt.after(1000, self.update_time)
 
         ix = (self.rt.winfo_pointerx() - self.rt.winfo_rootx()) // self.cell_size # Column Index
         iy = (self.rt.winfo_pointery() - self.rt.winfo_rooty()) // self.cell_size # Row Index
@@ -147,6 +150,7 @@ class pysweeper:
             print("Running")
             self.running = True
             self.rt.after(1000, self.update_time)
+            self.after_id = self.rt.after(1000, self.update_time)
 
         ix = (self.rt.winfo_pointerx() - self.rt.winfo_rootx()) // self.cell_size # Column Index
         iy = (self.rt.winfo_pointery() - self.rt.winfo_rooty()) // self.cell_size # Row Index
@@ -199,6 +203,11 @@ class pysweeper:
             self.gameWin()
 
     def restart(self): # Clear tk and recall init, reinitialize
+        self.rt.unbind("<Button-1>")
+        self.rt.unbind("<Button-3>")
+        self.running = False
+        print("Restarting...")
+        self.rt.after_cancel(self.after_id)
         self.rt.destroy()
         self.__init__()
 
