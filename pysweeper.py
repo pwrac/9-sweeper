@@ -178,7 +178,7 @@ class pysweeper:
         self.running = False
         print("Stopped Running")
 
-    ### TK FUNCTIONS ###
+    ### COMMON FUNCTIONS ###
     def updateCells(self): # If a cell is swept, depress the cell and update text to corresponding item
         COLOR=["#7F7F7F", "#0024F9", "#017D1F", "#FF0A01", "#00107C", "#810403", "#007F80", "#F700ED", "#FFC100", "#000000"]
         # Color coresponds to number on board: 1's will have the color COLOR[1] (#0024F9), etc.
