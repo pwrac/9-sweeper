@@ -47,8 +47,10 @@ class pysweeper:
         if diff == 3:
             columns = int(input("Width:\n>> "))
             rows = int(input("Height:\n>> "))
+            max_bombs = rows*columns-1 # Ensures at least one cell is not a bomb
             bombs = int(input("Amount of Bombs:\n>> "))
-
+            while bombs > max_bombs:
+                bombs = int(input(f"Amount of bombs must be less than {max_bombs}\nAmount of Bombs:\n>> "))
         self.running = True # Window will open and game will start
         return rows, columns, bombs
 
