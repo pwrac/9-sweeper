@@ -176,6 +176,7 @@ class pysweeper:
         self.rt.unbind("<Button-3>")
         self.game_lbl.config(text="You Win!")
         self.running = False
+        print("Stopped Running")
 
     ### TK FUNCTIONS ###
     def updateCells(self): # If a cell is swept, depress the cell and update text to corresponding item
