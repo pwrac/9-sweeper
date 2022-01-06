@@ -1,7 +1,6 @@
 # PYSWEEPER
 A remake of Minesweeper with python and tkinter as my final project in CS120: Intro to Programming
 
-For those who would like to see the demonstration video, you can [click here.](https://youtu.be/eMJbrBsLklQ)
 
 ## Screenshots
 Below are screenshots of the game with different inputs on difficulty
