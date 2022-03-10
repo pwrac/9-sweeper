@@ -1,5 +1,5 @@
 # PYSWEEPER
-A remake of Minesweeper with Python & Tkinter
+A simple remake of Minesweeper with Python & Tkinter
 
 
 ## Screenshots
