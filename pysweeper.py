@@ -1,5 +1,5 @@
 # /pysweeper-tkinter/pysweeper.py
-# pysweeper by Aidan Clark
+# github.com/pwrac/pysweeper
 
 from random import randint
 from tkinter import *
