@@ -1,5 +1,5 @@
 # PYSWEEPER
-A remake of Minesweeper with python and tkinter as my final project in CS120: Intro to Programming
+A remake of Minesweeper with Python & Tkinter
 
 
 ## Screenshots
