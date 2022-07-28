@@ -1,5 +1,5 @@
-# PYSWEEPER
-A simple remake of Minesweeper with Python & Tkinter
+# 9-SWEEPER
+A simple remake of Minesweeper with Python & Tkinter. Mine away the nines!
 
 
 ## Screenshots
