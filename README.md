@@ -1,7 +1,7 @@
 # 9-SWEEPER
 ### A simple remake of Minesweeper with Python & Tkinter. Mine away the nines!
 
-My first 'big' project, and my final for CS120 - Intro to Programming class!
+An excercise of my knowledge with python/tkinter, and my final for CS120 - Intro to Programming class!
 
 
 ## Screenshots
